@@ -16,6 +16,28 @@ public class OncogeneDetector {
 		 * If cancer > normal, it is cancer, else, not cancer
 		 * Return true if it is cancer
 		 */
+		System.out.println("Testing: " + string);
+		int healthyWithTrait = 0;
+		int cancerWithTrait = 0;
+		for(int i = 0; i < healthySequences.size(); i++) {
+			if(healthySequences.get(i).contains(string)) {
+				healthyWithTrait++;
+				System.out.println("Detected string in " + healthySequences.get(i));
+			}
+		}
+		double healthyPercentage = healthyWithTrait * 100 / healthySequences.size();
+		for(int i = 0; i < cancerSequences.size(); i++) {
+			if(cancerSequences.get(i).contains(string)) {
+				cancerWithTrait++;
+				System.out.println("Detected string in " + cancerSequences.get(i));
+			}
+		}
+		System.out.println(cancerWithTrait + " out of " + cancerSequences.size() + " have been detected with cancer, " + healthyWithTrait + " out of " + healthySequences.size() + " have been detected without");
+		double cancerPercentage = cancerWithTrait * 100 / cancerSequences.size();
+		System.out.println("Cancer Percentage: "  + cancerPercentage + " Normal Percentage: " + healthyPercentage);
+		if(cancerPercentage > healthyPercentage) {
+			return true;
+		}
 		return false;
 	}
 
